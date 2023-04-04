@@ -3,38 +3,37 @@ package com.codewars.sample;
 public class ProdFib {
 
     public static long[] productFib(long prod) {
-        System.out.println(getFib(8));
-        System.out.println(prod +"-------> "+inverseFibonacci(prod));
-        System.out.println(getFib(16));
-
-        return null;
+        long oldvalue = 0, newValue = 0, previos = 0;
+        int result, index = 0;
+        long multiplyValue = 0;
+        System.out.println(prod);
+        while (prod >= multiplyValue) {
+            index++;
+            previos = oldvalue;
+            oldvalue = newValue;
+            newValue = getFib(index);
+            multiplyValue = oldvalue * newValue;
+        }
+        multiplyValue = oldvalue * previos;
+        result = (multiplyValue == prod) ? 1 : 0;
+        long firstValue = result == 1 ? previos : oldvalue;
+        long secondValue = result == 1 ? oldvalue : newValue;
+        return new long[]{firstValue, secondValue, result};
     }
 
-    private static int getFib(int n) {
-
-        int firstTerm = 0, secondTerm = 1;
+    private static long getFib(long n) {
+        long firstTerm = 0, secondTerm = 1;
         for (int i = 1; i <= n; ++i) {
-            int nextTerm = firstTerm + secondTerm;
+            long nextTerm = firstTerm + secondTerm;
             firstTerm = secondTerm;
             secondTerm = nextTerm;
 
         }
-        return secondTerm;
+        return firstTerm;
     }
 
     public static int inverseFibonacci(long n) {
-//        int fib1 = 0, fib2 = 1;
         int index = 1;
-//        while (fib2 < n) {
-//            int nextFib = fib1 + fib2;
-//            fib1 = fib2;
-//            fib2 = nextFib;
-//            index++;
-//        }
-//
-//        return index ;
-
-
         int firstTerm = 0, fib2 = 1;
         while (fib2 < n) {
             int nextTerm = firstTerm + fib2;
@@ -43,7 +42,6 @@ public class ProdFib {
             index++;
         }
         return index;
-
     }
 
 
